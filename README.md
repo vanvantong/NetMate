@@ -77,42 +77,42 @@ output is likely to change in future versions of Flowtbag when a better
 system is designed.
 
 ### Features
-srcip - (string) The source ip address 
-srcport - The source port number 
-dstip - (string) The destination ip address 
-dstport - The destination port number 
-total_fpackets - Total packets in the forward direction 
-total_fvolume - Total bytes in the forward direction 
-total_bpackets - Total packets in the backward direction 
-total_bvolume - Total bytes in the backward direction 
-min_fpktl - The size of the smallest packet sent in the forward direction (in bytes) 
-mean_fpktl - The mean size of packets sent in the forward direction (in bytes) 
-max_fpktl - The size of the largest packet sent in the forward direction (in bytes) 
-std_fpktl - The standard deviation from the mean of the packets sent in the forward direction (in bytes) 
-min_bpktl - The size of the smallest packet sent in the backward direction (in bytes) 
-mean_bpktl - The mean size of packets sent in the backward direction (in bytes) 
-max_bpktl - The size of the largest packet sent in the backward direction (in bytes) 
-std_bpktl - The standard deviation from the mean of the packets sent in the backward direction (in bytes) 
-min_fiat - The minimum amount of time between two packets sent in the forward direction (in microseconds) 
-mean_fiat - The mean amount of time between two packets sent in the forward direction (in microseconds) 
-max_fiat - The maximum amount of time between two packets sent in the forward direction (in microseconds) 
-std_fiat - The standard deviation from the mean amount of time between two packets sent in the forward direction (in microseconds) 
-min_biat - The minimum amount of time between two packets sent in the backward direction (in microseconds) 
-mean_biat - The mean amount of time between two packets sent in the backward direction (in microseconds) 
-max_biat - The maximum amount of time between two packets sent in the backward direction (in microseconds) 
-std_biat - The standard deviation from the mean amount of time between two packets sent in the backward direction (in microseconds) 
-duration - The duration of the flow (in microseconds) 
-min_active - The minimum amount of time that the flow was active before going idle (in microseconds) 
-mean_active - The mean amount of time that the flow was active before going idle (in microseconds) 
-max_active - The maximum amount of time that the flow was active before going idle (in microseconds) 
-std_active - The standard deviation from the mean amount of time that the flow was active before going idle (in microseconds) 
-min_idle - The minimum time a flow was idle before becoming active (in microseconds) 
-mean_idle - The mean time a flow was idle before becoming active (in microseconds) 
-max_idle - The maximum time a flow was idle before becoming active (in microseconds) 
-std_idle - The standard devation from the mean time a flow was idle before becoming active (in microseconds) 
-fpsp - The percentage of small packets in the flows (foward)
-bpsp - The percentage of small packets in the flows (backward)
-fpmp - The percentage of medium packets in the flows (foward)
-bpmp - The percentage of medium packets in the flows (backward)
-fplp - The percentage of largest packets in the flows (foward)
-bplp - The percentage of largest packets in the flows (backward)
+- srcip - (string) The source ip address 
+- srcport - The source port number 
+- dstip - (string) The destination ip address 
+- dstport - The destination port number 
+- total_fpackets - Total packets in the forward direction 
+- total_fvolume - Total bytes in the forward direction 
+- total_bpackets - Total packets in the backward direction 
+- total_bvolume - Total bytes in the backward direction 
+- min_fpktl - The size of the smallest packet sent in the forward direction (in bytes) 
+- mean_fpktl - The mean size of packets sent in the forward direction (in bytes) 
+- max_fpktl - The size of the largest packet sent in the forward direction (in bytes) 
+- std_fpktl - The standard deviation from the mean of the packets sent in the forward direction (in bytes) 
+- min_bpktl - The size of the smallest packet sent in the backward direction (in bytes) 
+- mean_bpktl - The mean size of packets sent in the backward direction (in bytes) 
+- max_bpktl - The size of the largest packet sent in the backward direction (in bytes) 
+- std_bpktl - The standard deviation from the mean of the packets sent in the backward direction (in bytes) 
+- min_fiat - The minimum amount of time between two packets sent in the forward direction (in microseconds) 
+- mean_fiat - The mean amount of time between two packets sent in the forward direction (in microseconds) 
+- max_fiat - The maximum amount of time between two packets sent in the forward direction (in microseconds) 
+- std_fiat - The standard deviation from the mean amount of time between two packets sent in the forward direction (in microseconds) 
+- min_biat - The minimum amount of time between two packets sent in the backward direction (in microseconds) 
+- mean_biat - The mean amount of time between two packets sent in the backward direction (in microseconds) 
+- max_biat - The maximum amount of time between two packets sent in the backward direction (in microseconds) 
+- std_biat - The standard deviation from the mean amount of time between two packets sent in the backward direction (in microseconds) 
+- duration - The duration of the flow (in microseconds) 
+- min_active - The minimum amount of time that the flow was active before going idle (in microseconds) 
+- mean_active - The mean amount of time that the flow was active before going idle (in microseconds) 
+- max_active - The maximum amount of time that the flow was active before going idle (in microseconds) 
+- std_active - The standard deviation from the mean amount of time that the flow was active before going idle (in microseconds) 
+- min_idle - The minimum time a flow was idle before becoming active (in microseconds) 
+- mean_idle - The mean time a flow was idle before becoming active (in microseconds) 
+- max_idle - The maximum time a flow was idle before becoming active (in microseconds) 
+- std_idle - The standard devation from the mean time a flow was idle before becoming active (in microseconds) 
+- fpsp - The percentage of small packets in the flows (foward)
+- bpsp - The percentage of small packets in the flows (backward)
+- fpmp - The percentage of medium packets in the flows (foward)
+- bpmp - The percentage of medium packets in the flows (backward)
+- fplp - The percentage of largest packets in the flows (foward)
+- bplp - The percentage of largest packets in the flows (backward)
