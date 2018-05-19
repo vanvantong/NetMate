@@ -122,6 +122,7 @@ var (
 	endTime     time.Time
 	elapsed     time.Duration
 	activeFlows map[string]*Flow = make(map[string]*Flow)
+	CheckFlow = make(map[uint16]uint16)
 )
 
 func printStackTrace() {
@@ -193,33 +194,51 @@ func process(raw *pcap.Packet) {
 		log.Fatal("Not TCP or UDP. Packet should not have made it this far.")
 	}
 	pkt["time"] = raw.Time.Unix()
+	var idFlow uint16
+	if srcport != 443 {
+		idFlow = srcport
+	}else{
+		idFlow = dstport
+	}
 	ts := stringTuple(srcip, srcport, dstip, dstport, proto)
 	flow, exists := activeFlows[ts]
+	//fmt.Printf("ID:%d\n",idFlow)
+	//fmt.Printf("Count:%d\n",CheckFlow[idFlow])
 	if exists {
-		return_val := flow.Add(pkt, srcip)
-		if return_val == ADD_SUCCESS {
-			// The flow was successfully added
-			return
-		} else if return_val == ADD_CLOSED {
-			flow.Export()
-			delete(activeFlows, ts)
-			return
-		} else {
-			// Already in, but has expired
-			flow.Export()
+		CheckFlow[idFlow]++
+		if CheckFlow[idFlow] <= 25{
+			return_val := flow.Add(pkt, srcip)
+			if return_val == ADD_SUCCESS {
+				// The flow was successfully added
+				return
+			} else if return_val == ADD_CLOSED {
+				flow.Export()
+				delete(activeFlows, ts)
+				return
+			} else {
+				// Already in, but has expired
+
+				flow.Export()
+				flowCount++
+				f := new(Flow)
+				f.Init(srcip, srcport, dstip, dstport, proto, pkt, flowCount)
+				activeFlows[ts] = f
+				return
+			}			
+		}
+
+	} else {
+		// This flow does not yet exist in the map
+		CheckFlow[idFlow] = 1
+		if CheckFlow[idFlow] <= 25{
 			flowCount++
 			f := new(Flow)
 			f.Init(srcip, srcport, dstip, dstport, proto, pkt, flowCount)
 			activeFlows[ts] = f
 			return
 		}
-	} else {
-		// This flow does not yet exist in the map
-		flowCount++
-		f := new(Flow)
-		f.Init(srcip, srcport, dstip, dstport, proto, pkt, flowCount)
-		activeFlows[ts] = f
 
-		return
+
+
 	}
 }
