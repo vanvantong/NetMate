@@ -202,43 +202,44 @@ func process(raw *pcap.Packet) {
 	}
 	ts := stringTuple(srcip, srcport, dstip, dstport, proto)
 	flow, exists := activeFlows[ts]
-	//fmt.Printf("ID:%d\n",idFlow)
-	//fmt.Printf("Count:%d\n",CheckFlow[idFlow])
+	fmt.Printf("ID:%d\n",idFlow)
+	fmt.Printf("Count:%d\n",CheckFlow[idFlow])
 	if exists {
 		CheckFlow[idFlow]++
-		if CheckFlow[idFlow] >= 25 && CheckFlow[idFlow] < 50{
-			return_val := flow.Add(pkt, srcip)
-			if return_val == ADD_SUCCESS {
-				// The flow was successfully added
-				return
-			} else if return_val == ADD_CLOSED {
-				flow.Export()
-				delete(activeFlows, ts)
-				return
-			} else {
-				// Already in, but has expired
+		if (CheckFlow[idFlow] >= 25 && CheckFlow[idFlow] < 50 ){
+				fmt.Printf("ID1:%d\n",idFlow)
+				fmt.Printf("Count1:%d\n",CheckFlow[idFlow])
+				return_val := flow.Add(pkt, srcip)
+				if return_val == ADD_SUCCESS {
+					// The flow was successfully added
+					return
+				} else if return_val == ADD_CLOSED {
+					flow.Export()
+					delete(activeFlows, ts)
+					return
+				} else {
+					// Already in, but has expired
 
-				flow.Export()
-				flowCount++
-				f := new(Flow)
-				f.Init(srcip, srcport, dstip, dstport, proto, pkt, flowCount)
-				activeFlows[ts] = f
-				return
-			}			
+					flow.Export()
+					flowCount++
+					f := new(Flow)
+					f.Init(srcip, srcport, dstip, dstport, proto, pkt, flowCount)
+					activeFlows[ts] = f
+					return
+					
+			}		
 		}
 
 	} else {
 		// This flow does not yet exist in the map
 		CheckFlow[idFlow] = 1
-		if CheckFlow[idFlow] >= 25 && CheckFlow[idFlow] < 50{
-			flowCount++
-			f := new(Flow)
-			f.Init(srcip, srcport, dstip, dstport, proto, pkt, flowCount)
-			activeFlows[ts] = f
-			return
-		}
-
-
-
+		fmt.Printf("ID2:%d\n",idFlow)
+		fmt.Printf("Count2:%d\n",CheckFlow[idFlow])
+		flowCount++
+		f := new(Flow)
+		f.Init(srcip, srcport, dstip, dstport, proto, pkt, flowCount)
+		activeFlows[ts] = f
+		return
+		
 	}
 }
