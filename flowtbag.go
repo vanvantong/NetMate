@@ -202,13 +202,14 @@ func process(raw *pcap.Packet) {
 	}
 	ts := stringTuple(srcip, srcport, dstip, dstport, proto)
 	flow, exists := activeFlows[ts]
-	fmt.Printf("ID:%d\n",idFlow)
-	fmt.Printf("Count:%d\n",CheckFlow[idFlow])
+	//fmt.Printf("ID:%d\n",idFlow)
+	//fmt.Printf("Count:%d\n",CheckFlow[idFlow])
+	fmt.Println()
 	if exists {
 		CheckFlow[idFlow]++
 		if (CheckFlow[idFlow] >= 25 && CheckFlow[idFlow] < 50 ){
-				fmt.Printf("ID1:%d\n",idFlow)
-				fmt.Printf("Count1:%d\n",CheckFlow[idFlow])
+				//fmt.Printf("ID1:%d\n",idFlow)
+				//fmt.Printf("Count1:%d\n",CheckFlow[idFlow])
 				return_val := flow.Add(pkt, srcip)
 				if return_val == ADD_SUCCESS {
 					// The flow was successfully added
@@ -225,16 +226,15 @@ func process(raw *pcap.Packet) {
 					f := new(Flow)
 					f.Init(srcip, srcport, dstip, dstport, proto, pkt, flowCount)
 					activeFlows[ts] = f
-					return
-					
+					return		
 			}		
 		}
 
 	} else {
 		// This flow does not yet exist in the map
 		CheckFlow[idFlow] = 1
-		fmt.Printf("ID2:%d\n",idFlow)
-		fmt.Printf("Count2:%d\n",CheckFlow[idFlow])
+		//fmt.Printf("ID2:%d\n",idFlow)
+		//fmt.Printf("Count2:%d\n",CheckFlow[idFlow])
 		flowCount++
 		f := new(Flow)
 		f.Init(srcip, srcport, dstip, dstport, proto, pkt, flowCount)
